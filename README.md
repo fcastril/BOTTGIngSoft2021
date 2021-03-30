@@ -1,6 +1,6 @@
-**Implementación y Desarrollo BOT**
+#Implementación y Desarrollo BOT
 
-1.  **Preparación Preliminar para ambiente de desarrollo**
+**1 .Preparación Preliminar para ambiente de desarrollo**
 
     1.  **Requisitos Iniciales**
 
