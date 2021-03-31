@@ -3,6 +3,7 @@
 //
 // Generated with Bot Builder V4 SDK Template for Visual Studio EmptyBot v4.12.2
 
+using BOTTGIngSoft2021.Bot.Services.LUIS;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Bot.Builder;
@@ -44,7 +45,8 @@ namespace BOTTGIngSoft2021.Bot
             // Create the Bot Framework Adapter with error handling enabled.
             services.AddSingleton<IBotFrameworkHttpAdapter, AdapterWithErrorHandler>();
 
-            // Create the bot as a transient. In this case the ASP Controller is expecting an IBot.
+            services.AddSingleton<ILuisService, LuisService>();
+
             services.AddTransient<IBot, BotTGIngSoft2021>();
         }
 
