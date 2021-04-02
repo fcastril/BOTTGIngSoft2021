@@ -5,19 +5,22 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Bot.Builder;
+using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Schema;
 
 namespace BOTTGIngSoft2021.Bot
 {
-    public class BotTGIngSoft2021 : ActivityHandler
+    public class BotTGIngSoft2021<T> : ActivityHandler where T:Dialog
     {
         private readonly BotState _userState;
         private readonly BotState _conversationState;
+        private readonly Dialog _dialog;
 
-        public BotTGIngSoft2021(UserState userState, ConversationState conversationState)
+        public BotTGIngSoft2021(UserState userState, ConversationState conversationState, T dialog)
         {
             _userState = userState;
             _conversationState = conversationState;
+            _dialog = dialog;
         }
         protected override async Task OnMembersAddedAsync(IList<ChannelAccount> membersAdded, ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken)
         {
@@ -25,7 +28,7 @@ namespace BOTTGIngSoft2021.Bot
             {
                 if (member.Id != turnContext.Activity.Recipient.Id)
                 {
-                    await turnContext.SendActivityAsync(MessageFactory.Text($"Hello world!"), cancellationToken);
+                    await turnContext.SendActivityAsync(MessageFactory.Text($"Bienvenido a BotTGIngSoft2021!"), cancellationToken);
                 }
             }
         }
@@ -37,8 +40,12 @@ namespace BOTTGIngSoft2021.Bot
         }
         protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
         {
-            var userMessage = turnContext.Activity.Text;
-            await turnContext.SendActivityAsync($"User: {userMessage}", cancellationToken: cancellationToken);
+
+            await _dialog.RunAsync(
+                turnContext,
+                _conversationState.CreateProperty<DialogState>(nameof(DialogState)),
+                cancellationToken
+                ); 
         }
     }
 }

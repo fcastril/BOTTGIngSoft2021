@@ -3,6 +3,7 @@
 //
 // Generated with Bot Builder V4 SDK Template for Visual Studio EmptyBot v4.12.2
 
+using BOTTGIngSoft2021.Bot.Dialogs;
 using BOTTGIngSoft2021.Bot.Services.LUIS;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -46,8 +47,9 @@ namespace BOTTGIngSoft2021.Bot
             services.AddSingleton<IBotFrameworkHttpAdapter, AdapterWithErrorHandler>();
 
             services.AddSingleton<ILuisService, LuisService>();
+            services.AddSingleton<RootDialog>();
 
-            services.AddTransient<IBot, BotTGIngSoft2021>();
+            services.AddTransient<IBot, BotTGIngSoft2021<RootDialog>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
