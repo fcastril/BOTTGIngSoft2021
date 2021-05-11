@@ -30,7 +30,9 @@ namespace BOTTGIngSoft2021.API
         {
             services.AddControllers();
 
-            services.AddDbContext<BOTTGIngSoft2021Context>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            string stringConnection = Configuration.GetConnectionString("Azure");
+            services.AddDbContext<BOTTGIngSoft2021Context>(options => options.UseSqlServer(stringConnection));
 
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
