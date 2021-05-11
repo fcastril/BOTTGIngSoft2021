@@ -1,15 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BOTTGIngSoft2021.Repo;
+using BOTTGIngSoft2021.Repo.Interfaces;
+using BOTTGIngSoft2021.Repo.Repositories;
+using BOTTGIngSoft2021.Service.Interfaces;
+using BOTTGIngSoft2021.Service.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using System.Text;
 
 namespace BOTTGIngSoft2021.API
 {
@@ -26,6 +29,92 @@ namespace BOTTGIngSoft2021.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddDbContext<BOTTGIngSoft2021Context>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddTransient<IIntentService, IntentService>();
+
+
+            AddSwagger(services);
+
+
+
+            // Configuration JWT Token
+            var key = Encoding.ASCII.GetBytes(Configuration.GetValue<string>("SecretKey"));
+
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
+
+            // CORS
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            });
+        }
+
+        private void AddSwagger(IServiceCollection services)
+        {
+            services.AddSwaggerGen(options =>
+            {
+                var groupName = "v1";
+
+                options.SwaggerDoc(groupName, new OpenApiInfo
+                {
+                    Title = $"BOTTGIngSoft2021 {groupName}",
+                    Version = groupName,
+                    Description = "BOTTGIngSoft2021 API",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Fabian Mauricio Castrillón Franco - Luis Felipe Benitez",
+                        Email = "fcastril@gmail.com - felipe-benitez@hotmail.com"
+                    }
+                });
+
+                options.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Description = "Copia y pega el Token en el campo 'Value:' as�: Bearer {Token JWT}.",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "bearer",
+                    BearerFormat = "Bearer {token}",
+                    Reference = new OpenApiReference
+                    {
+                        Id = JwtBearerDefaults.AuthenticationScheme,
+                        Type = ReferenceType.SecurityScheme
+                    }
+                });
+
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement {
+                   {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        new string[] { }
+                    }
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,8 +124,17 @@ namespace BOTTGIngSoft2021.API
             {
                 app.UseDeveloperExceptionPage();
             }
+            // CORS
+            app.UseCors("CorsPolicy");
 
+            app.UseAuthentication();
             app.UseHttpsRedirection();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "BOTTGIngSoft2021 API V1");
+            });
 
             app.UseRouting();
 
