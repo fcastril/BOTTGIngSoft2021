@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BOTTGIngSoft2021.Bot", "BOTTGIngSoft2021.Bot\BOTTGIngSoft2021.Bot.csproj", "{26377AE2-1095-4C4A-B41B-8E77710926DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BOTTGIngSoft2021.Bot", "BOTTGIngSoft2021.Bot\BOTTGIngSoft2021.Bot.csproj", "{26377AE2-1095-4C4A-B41B-8E77710926DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BOTTGIngSoft2021.API", "BOTTGIngSoft2021.API\BOTTGIngSoft2021.API.csproj", "{1B9CB11B-CDE4-4E02-A53B-0825B9645E24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BOTTGIngSoft2021.Data", "BOTTGIngSoft2021.Data\BOTTGIngSoft2021.Data.csproj", "{5B62A555-6817-4AB7-B27E-261648E08E7C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{26377AE2-1095-4C4A-B41B-8E77710926DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26377AE2-1095-4C4A-B41B-8E77710926DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26377AE2-1095-4C4A-B41B-8E77710926DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B9CB11B-CDE4-4E02-A53B-0825B9645E24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B9CB11B-CDE4-4E02-A53B-0825B9645E24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B9CB11B-CDE4-4E02-A53B-0825B9645E24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B9CB11B-CDE4-4E02-A53B-0825B9645E24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B62A555-6817-4AB7-B27E-261648E08E7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B62A555-6817-4AB7-B27E-261648E08E7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B62A555-6817-4AB7-B27E-261648E08E7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B62A555-6817-4AB7-B27E-261648E08E7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
