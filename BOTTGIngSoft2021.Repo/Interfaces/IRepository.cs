@@ -7,7 +7,8 @@ namespace BOTTGIngSoft2021.Repo.Interfaces
     public interface IRepository<T> where T : BaseEntity
     {
         IEnumerable<T> GetAll();
-        T Get(Guid id);
+        T Get(int id);
+        T Get(string id);
         void Insert(T reg);
         void Update(T reg);
         void Delete(T reg);

@@ -7,8 +7,11 @@ namespace BOTTGIngSoft2021.Data.Maps
     {
         public IntentMap(EntityTypeBuilder<Intent> entityBuilder)
         {
-            entityBuilder.HasKey(t => t.Id);
+            entityBuilder.HasKey(t => t.CodeId);
+            entityBuilder.Property(t => t.Id).IsRequired();
+            entityBuilder.HasIndex(t => t.Id);
             entityBuilder.Property(t => t.Name).IsRequired();
+            entityBuilder.HasIndex(t => t.Name);
         }
     }
 }

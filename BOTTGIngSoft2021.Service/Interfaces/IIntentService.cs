@@ -7,9 +7,10 @@ namespace BOTTGIngSoft2021.Service.Interfaces
     public interface IIntentService
     {
         IEnumerable<Intent> GetIntents();
-        Intent GetIntent(Guid id);
+        Intent GetIntent(int id);
+        Intent GetIntent(string id);
         void InsertIntent(Intent reg);
         void UpdateIntent(Intent reg);
-        void DeleteIntent(Guid id);
+        void DeleteIntent(int id);
     }
 }

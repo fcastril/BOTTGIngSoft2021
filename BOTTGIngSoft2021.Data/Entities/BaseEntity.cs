@@ -6,6 +6,7 @@ namespace BOTTGIngSoft2021.Data.Entities
 {
     public class BaseEntity
     {
-        public Guid Id { get; set; }
+        public int CodeId { get; set; }
+        public string Id { get; set; }
     }
 }

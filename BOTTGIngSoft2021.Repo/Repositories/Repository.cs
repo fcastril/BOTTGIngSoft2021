@@ -22,7 +22,11 @@ namespace BOTTGIngSoft2021.Repo.Repositories
         {
             return entities.AsEnumerable();
         }
-        public T Get(Guid id)
+        public T Get(int id)
+        {
+            return entities.SingleOrDefault(s => s.CodeId == id);
+        }
+        public T Get(string id)
         {
             return entities.SingleOrDefault(s => s.Id == id);
         }

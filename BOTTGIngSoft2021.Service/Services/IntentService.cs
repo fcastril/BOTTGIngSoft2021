@@ -19,7 +19,11 @@ namespace BOTTGIngSoft2021.Service.Services
         {
             return intentRepository.GetAll();
         }
-        public Intent GetIntent(Guid id)
+        public Intent GetIntent(int id)
+        {
+            return intentRepository.Get(id);
+        }
+        public Intent GetIntent(string id)
         {
             return intentRepository.Get(id);
         }
@@ -31,7 +35,7 @@ namespace BOTTGIngSoft2021.Service.Services
         {
             intentRepository.Update(Intent);
         }
-        public void DeleteIntent(Guid id)
+        public void DeleteIntent(int id)
         {
             Intent Intent = GetIntent(id);
             intentRepository.Remove(Intent);
