@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-05-11T23:57:01.749Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36 Edg/90.0.818.56" etag="nlE6nqyov845r5WhemIv" version="14.6.11" type="github" pages="2">
+<mxfile host="app.diagrams.net" modified="2021-05-12T00:39:59.064Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36 Edg/90.0.818.56" etag="8tU-bNt-Xw5DMbiSt11_" version="14.6.11" type="github" pages="2">
   <diagram id="yzrDxugUBzy7MwYX6YMi" name="General">
     <mxGraphModel dx="981" dy="548" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -15,7 +15,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="NbvLRPV5zqQ-gS-G9C2f-16" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="559" y="391.65999999999997" width="110" height="222" as="geometry" />
+          <mxGeometry x="559" y="391.66" width="110" height="168.34" as="geometry" />
         </mxCell>
         <mxCell id="NbvLRPV5zqQ-gS-G9C2f-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="sCG8SnL8BWODsKmGUk7c-1" target="NbvLRPV5zqQ-gS-G9C2f-4">
           <mxGeometry relative="1" as="geometry">
@@ -84,15 +84,6 @@
         </mxCell>
         <mxCell id="NbvLRPV5zqQ-gS-G9C2f-11" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Facebook_icon.svg/1200px-Facebook_icon.svg.png;" vertex="1" parent="1">
           <mxGeometry x="620" y="487.38" width="34" height="34" as="geometry" />
-        </mxCell>
-        <mxCell id="NbvLRPV5zqQ-gS-G9C2f-12" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.corpoeducacion.org.co/wp-content/uploads/2017/05/twitter-icon-circle-blue-logo-preview.png;" vertex="1" parent="1">
-          <mxGeometry x="616" y="526.36" width="42" height="42" as="geometry" />
-        </mxCell>
-        <mxCell id="NbvLRPV5zqQ-gS-G9C2f-14" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Instagram-Icon.png/1025px-Instagram-Icon.png;" vertex="1" parent="1">
-          <mxGeometry x="600" y="568.36" width="35" height="34.93" as="geometry" />
-        </mxCell>
-        <mxCell id="NbvLRPV5zqQ-gS-G9C2f-15" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://toppng.com/uploads/preview/world-icon-web-icon-white-11563010874xluuy00vry.png;" vertex="1" parent="1">
-          <mxGeometry x="586" y="533.03" width="28" height="28.66" as="geometry" />
         </mxCell>
         <mxCell id="NbvLRPV5zqQ-gS-G9C2f-20" value="Asesor&lt;br&gt;Soporte" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
           <mxGeometry x="602.5" y="650" width="30" height="60" as="geometry" />
