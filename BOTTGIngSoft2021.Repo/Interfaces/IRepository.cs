@@ -9,6 +9,7 @@ namespace BOTTGIngSoft2021.Repo.Interfaces
         IEnumerable<T> GetAll();
         T Get(int id);
         T Get(string id);
+        IEnumerable<T> Get(string field, string value);
         void Insert(T reg);
         void Update(T reg);
         void Delete(T reg);

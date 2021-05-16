@@ -8,48 +8,36 @@ using System.Linq.Expressions;
 
 namespace BOTTGIngSoft2021.Repo.Repositories
 {
-    public class Repository<T> : IRepository<T> where T : BaseEntity
+    public class RepositoryIntent : IRepositoryIntent
     {
         private readonly BOTTGIngSoft2021Context context;
-        private DbSet<T> entities;
+        private DbSet<Intent> entities;
         string errorMessage = string.Empty;
 
-        public Repository(BOTTGIngSoft2021Context context)
+        public RepositoryIntent(BOTTGIngSoft2021Context context)
         {
             this.context = context;
-            entities = context.Set<T>();
+            entities = context.Set<Intent>();
         }
-        public IEnumerable<T> GetAll()
+        public IEnumerable<Intent> GetAll()
         {
             return entities.AsEnumerable();
         }
-        public T Get(int id)
+        public Intent Get(int id)
         {
             return entities.SingleOrDefault(s => s.CodeId == id);
         }
-        public T Get(string id)
+        public Intent Get(string id)
         {
             return entities.SingleOrDefault(s => s.Id == id);
         }
-        public IEnumerable<T> Get(string field, string value)
+        public Intent GetName(string value)
         {
-            var parameterExpression = Expression.Parameter(typeof(T),"x");
-            var constant = Expression.Constant(value);
-            var property = Expression.Property(parameterExpression, field);
-
-            var expression = Expression.Equal(property, constant);
-
-            var lambda = Expression.Lambda<Func<T,bool>>(expression, parameterExpression);
-
-
-            var compiledLambda = lambda.Compile();
-
-            var result = entities.Where(compiledLambda);
-            
-
+          
+            var result = entities.Where(x=>x.Name==value).FirstOrDefault();
             return result;
         }
-        public void Insert(T reg)
+        public void Insert(Intent reg)
         {
             if (reg == null)
             {
@@ -58,7 +46,7 @@ namespace BOTTGIngSoft2021.Repo.Repositories
             entities.Add(reg);
             context.SaveChanges();
         }
-        public void Update(T reg)
+        public void Update(Intent reg)
         {
             if (reg == null)
             {
@@ -67,7 +55,7 @@ namespace BOTTGIngSoft2021.Repo.Repositories
             context.Update(reg);
             context.SaveChanges();
         }
-        public void Delete(T reg)
+        public void Delete(Intent reg)
         {
             if (reg == null)
             {
@@ -77,7 +65,7 @@ namespace BOTTGIngSoft2021.Repo.Repositories
             context.SaveChanges();
         }
 
-        public void Remove(T reg)
+        public void Remove(Intent reg)
         {
             if (reg == null)
             {
@@ -90,5 +78,6 @@ namespace BOTTGIngSoft2021.Repo.Repositories
         {
             context.SaveChanges();
         }
+
     }
 }

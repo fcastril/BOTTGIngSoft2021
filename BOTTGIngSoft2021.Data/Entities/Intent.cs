@@ -5,5 +5,6 @@
         public string Name { get; set; }
         public int TypeId { get; set; }
         public string ReadableType { get; set; }
+        public string Answer { get; set; }
     }
 }

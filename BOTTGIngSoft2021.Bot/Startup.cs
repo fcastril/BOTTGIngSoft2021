@@ -5,11 +5,17 @@
 
 using BOTTGIngSoft2021.Bot.Dialogs;
 using BOTTGIngSoft2021.Bot.Services.LUIS;
+using BOTTGIngSoft2021.Repo;
+using BOTTGIngSoft2021.Repo.Interfaces;
+using BOTTGIngSoft2021.Repo.Repositories;
+using BOTTGIngSoft2021.Service.Interfaces;
+using BOTTGIngSoft2021.Service.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Azure.Blobs;
 using Microsoft.Bot.Builder.Integration.AspNet.Core;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -43,11 +49,22 @@ namespace BOTTGIngSoft2021.Bot
 
             services.AddControllers().AddNewtonsoftJson();
 
+
+
+            string stringConnection = Configuration.GetConnectionString("Azure");
+            services.AddDbContext<BOTTGIngSoft2021Context>(options => options.UseSqlServer(stringConnection));
+
+
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped(typeof(IRepositoryIntent), typeof(RepositoryIntent));
+            services.AddTransient<IIntentService, IntentService>();
+            services.AddTransient<IUsersBotService, UsersBotService>();
+
             // Create the Bot Framework Adapter with error handling enabled.
             services.AddSingleton<IBotFrameworkHttpAdapter, AdapterWithErrorHandler>();
 
             services.AddSingleton<ILuisService, LuisService>();
-            services.AddSingleton<RootDialog>();
+            services.AddTransient<RootDialog>();
 
             services.AddTransient<IBot, BotTGIngSoft2021<RootDialog>>();
         }

@@ -28,7 +28,7 @@ namespace BOTTGIngSoft2021.API.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            IEnumerable<Intent> reg = _intentService.GetIntents();
+            IEnumerable<Intent> reg = _intentService.Get();
             return Ok(reg);
         }
         [HttpGet]
@@ -36,7 +36,20 @@ namespace BOTTGIngSoft2021.API.Controllers
         public IActionResult Get(int id)
         {
 
-            Intent reg = _intentService.GetIntent(id);
+            Intent reg = _intentService.Get(id);
+            if (reg == null)
+            {
+                return NotFound();
+            }
+            return Ok(reg);
+        }
+
+        [HttpGet]
+        [Route("Name/{value}")]
+        public IActionResult Get(string value)
+        {
+
+           Intent reg = _intentService.GetName(value);
             if (reg == null)
             {
                 return NotFound();
@@ -152,14 +165,14 @@ namespace BOTTGIngSoft2021.API.Controllers
                         Intent intentGet = new Intent();
                         foreach (Intent intent in ret)
                         {
-                            intentGet = _intentService.GetIntent(intent.Id);
+                            intentGet = _intentService.Get(intent.Id);
                             if (intentGet == null)
                             {
-                                _intentService.InsertIntent(intent);
+                                _intentService.Insert(intent);
                             }
                             else
                             {
-                                _intentService.UpdateIntent(intent);
+                                _intentService.Update(intent);
                             }
                         }
                     }
@@ -208,7 +221,7 @@ namespace BOTTGIngSoft2021.API.Controllers
                         result = result.Replace("\"", string.Empty) ;
                         reg = await GetLuisIntent(Guid.Parse(result));
 
-                        _intentService.InsertIntent(reg);
+                        _intentService.Insert(reg);
 
                     }
                     else
@@ -232,8 +245,8 @@ namespace BOTTGIngSoft2021.API.Controllers
                 return BadRequest();
             }
 
-            _intentService.UpdateIntent(reg);
-            reg = _intentService.GetIntent(id);
+            _intentService.Update(reg);
+            reg = _intentService.Get(id);
 
             return Ok(reg);
         }
@@ -242,14 +255,14 @@ namespace BOTTGIngSoft2021.API.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteUser(int id)
         {
-            Intent reg = _intentService.GetIntent(id);
+            Intent reg = _intentService.Get(id);
 
             if (reg == null)
             {
                 return NotFound();
             }
 
-            _intentService.DeleteIntent(id);
+            _intentService.Delete(id);
 
             return Ok(reg);
         }

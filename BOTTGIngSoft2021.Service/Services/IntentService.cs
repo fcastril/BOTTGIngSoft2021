@@ -1,4 +1,5 @@
 ﻿using BOTTGIngSoft2021.Data.Entities;
+using BOTTGIngSoft2021.Repo;
 using BOTTGIngSoft2021.Repo.Interfaces;
 using BOTTGIngSoft2021.Service.Interfaces;
 using System;
@@ -8,36 +9,39 @@ namespace BOTTGIngSoft2021.Service.Services
 {
     public class IntentService : IIntentService
     {
-        private IRepository<Intent> intentRepository;
-        public IntentService(IRepository<Intent> IntentRepository)
+        private IRepositoryIntent intentRepository;
+        public IntentService(IRepositoryIntent IntentRepository)
         {
             this.intentRepository = IntentRepository;
-
         }
 
-        public IEnumerable<Intent> GetIntents()
+        public IEnumerable<Intent> Get()
         {
             return intentRepository.GetAll();
         }
-        public Intent GetIntent(int id)
+        public Intent Get(int id)
         {
             return intentRepository.Get(id);
         }
-        public Intent GetIntent(string id)
+        public Intent Get(string id)
         {
             return intentRepository.Get(id);
         }
-        public void InsertIntent(Intent Intent)
+        public Intent GetName(string value)
+        {
+            return intentRepository.GetName(value);
+        }
+        public void Insert(Intent Intent)
         {
             intentRepository.Insert(Intent);
         }
-        public void UpdateIntent(Intent Intent)
+        public void Update(Intent Intent)
         {
             intentRepository.Update(Intent);
         }
-        public void DeleteIntent(int id)
+        public void Delete(int id)
         {
-            Intent Intent = GetIntent(id);
+            Intent Intent = Get(id);
             intentRepository.Remove(Intent);
             intentRepository.SaveChanges();
         }

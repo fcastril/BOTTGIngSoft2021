@@ -17,6 +17,10 @@
     <Content Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
+      <ProjectReference Include="..\BOTTGIngSoft2021.Data\BOTTGIngSoft2021.Data.csproj" />
+      <ProjectReference Include="..\BOTTGIngSoft2021.Repo\BOTTGIngSoft2021.Repo.csproj" />
+      <ProjectReference Include="..\BOTTGIngSoft2021.Service\BOTTGIngSoft2021.Service.csproj" />
+
+    </ItemGroup>
 
 </Project>
