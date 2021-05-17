@@ -34,12 +34,7 @@ namespace BOTTGIngSoft2021.Bot.Dialogs
 
         private async Task<DialogTurnResult> ManageIntentions(WaterfallStepContext stepContext, RecognizerResult luisResult, CancellationToken cancellationToken)
         {
-            var topIntent = luisResult.GetTopScoringIntent();
-
             return await IntentGeneral(stepContext, luisResult, cancellationToken);
-
-            //return await stepContext.NextAsync(cancellationToken: cancellationToken);
-
         }
 
         #region IntentLuis

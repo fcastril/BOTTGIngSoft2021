@@ -46,7 +46,7 @@ namespace BOTTGIngSoft2021.Bot
         protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
         {
 
-            await SaveUser(turnContext);
+            //await SaveUser(turnContext);
             
             await _dialog.RunAsync(
                 turnContext,
