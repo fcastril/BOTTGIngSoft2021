@@ -123,7 +123,7 @@ namespace BOTTGIngSoft2021.API.Controllers
 
         // POST api/<UserController>
         [HttpPost]
-        public async Task<IActionResult> Post(Example reg)
+        public async Task<IActionResult> Post(List<Example> reg)
         {
 
             try
@@ -140,9 +140,13 @@ namespace BOTTGIngSoft2021.API.Controllers
 
                     client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", LuisApiKey);
 
-                    Models.ExampleViewModel exampleViewModel = new Models.ExampleViewModel(reg.Text, reg.IntentLabel);
                     List<Models.ExampleViewModel> listExamples = new List<Models.ExampleViewModel>();
-                    listExamples.Add(exampleViewModel);
+                    foreach (var item in reg)
+                    {
+
+                        Models.ExampleViewModel exampleViewModel = new Models.ExampleViewModel(item.Text, item.IntentLabel);
+                        listExamples.Add(exampleViewModel);
+                    }
                     string objetoSerializado = JsonConvert.SerializeObject(listExamples);
                     StringContent contenido = new StringContent(objetoSerializado, Encoding.UTF8, "application/json");
 
@@ -164,7 +168,7 @@ namespace BOTTGIngSoft2021.API.Controllers
             }
             return Ok(reg);
         }
-      
+
 
         // DELETE api/<UserController>/5
         [HttpDelete("{id}")]
