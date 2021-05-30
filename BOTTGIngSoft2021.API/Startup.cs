@@ -37,8 +37,11 @@ namespace BOTTGIngSoft2021.API
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped(typeof(IRepositoryIntent), typeof(RepositoryIntent));
+            services.AddScoped(typeof(IRepositoryExample), typeof(RepositoryExample));
+
             services.AddTransient<IIntentService, IntentService>();
             services.AddTransient<IUsersBotService, UsersBotService>();
+            services.AddTransient<IExampleService, ExampleService>();
 
 
             AddSwagger(services);

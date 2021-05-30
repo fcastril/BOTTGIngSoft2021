@@ -3,10 +3,7 @@
     public class IntentViewModel
     {
         public string Name { get; set; }
+        public string Answer { get; set; }
 
-        public IntentViewModel(string name)
-        {
-            this.Name = name;
-        }
     }
 }

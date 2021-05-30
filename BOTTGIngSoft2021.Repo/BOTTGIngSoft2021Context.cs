@@ -15,6 +15,7 @@ namespace BOTTGIngSoft2021.Repo
             base.OnModelCreating(modelBuilder);
             new IntentMap(modelBuilder.Entity<Intent>());
             new UsersBotMap(modelBuilder.Entity<UsersBot>());
+            new ExampleMap(modelBuilder.Entity<Example>());
         }
     }
 }

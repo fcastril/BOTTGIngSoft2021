@@ -191,7 +191,7 @@ namespace BOTTGIngSoft2021.API.Controllers
         }
         // POST api/<UserController>
         [HttpPost]
-        public async Task<IActionResult> Post(string name)
+        public async Task<IActionResult> Post(IntentViewModel intent)
         {
 
             Intent reg = new Intent();
@@ -209,7 +209,7 @@ namespace BOTTGIngSoft2021.API.Controllers
 
                     client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", LuisApiKey);
 
-                    IntentViewModel intentViewModel = new IntentViewModel(name);
+                    IntentViewModel intentViewModel = intent;
 
                     string objetoSerializado = JsonConvert.SerializeObject(intentViewModel);
                     StringContent contenido = new StringContent(objetoSerializado, Encoding.UTF8, "application/json");
@@ -220,6 +220,7 @@ namespace BOTTGIngSoft2021.API.Controllers
                         string result = await response.Content.ReadAsStringAsync();
                         result = result.Replace("\"", string.Empty) ;
                         reg = await GetLuisIntent(Guid.Parse(result));
+                        reg.Answer = intent.Answer;
 
                         _intentService.Insert(reg);
 
