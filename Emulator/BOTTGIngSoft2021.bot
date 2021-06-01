@@ -1,0 +1,18 @@
+{
+    "name": "BOTTGIngSoft2021",
+    "description": "",
+    "services": [
+        {
+            "type": "endpoint",
+            "name": "http://localhost:3978/api/messages",
+            "id": "e75f8400-8e95-11eb-98a1-4748e60ffb9c",
+            "appId": "",
+            "appPassword": "",
+            "endpoint": "http://localhost:3978/api/messages"
+        }
+    ],
+    "padlock": "",
+    "version": "2.0",
+    "path": "C:\\dev\\BOTTGIngSoft2021\\Emulator\\BOTTGIngSoft2021.bot",
+    "overrides": null
+}
